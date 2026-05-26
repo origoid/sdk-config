@@ -6,7 +6,7 @@ api:
 default-group: local
 
 groups:
-  # Local generation for testing — outputs to ../sdks/* (gitignored until publish)
+  # Local: generate to ../sdks/* for inspection. No publish.
   local:
     generators:
       - name: fernapi/fern-typescript-node-sdk
@@ -32,3 +32,44 @@ groups:
           package_name: origoid
           pydantic_config:
             version: v2
+
+  # Publish: ship to npm / PyPI / GitHub. Run when ready to release.
+  # Requires env vars: NPM_TOKEN, PYPI_TOKEN
+  # GitHub push uses Fern's GitHub App (authorize once in Fern dashboard)
+  publish:
+    generators:
+      - name: fernapi/fern-typescript-node-sdk
+        version: 0.51.7
+        output:
+          location: npm
+          url: https://registry.npmjs.org
+          package-name: "@origoid/sdk"
+          token: ${NPM_TOKEN}
+        github:
+          repository: origoid/sdk-node
+          mode: push
+
+      - name: fernapi/fern-python-sdk
+        version: 4.0.0
+        output:
+          location: pypi
+          url: https://upload.pypi.org/legacy/
+          package-name: origoid
+          token: ${PYPI_TOKEN}
+        github:
+          repository: origoid/sdk-python
+          mode: push
+        config:
+          client_class_name: OrigoID
+          package_name: origoid
+          pydantic_config:
+            version: v2
+
+      - name: fernapi/fern-go-sdk
+        version: 0.36.0
+        github:
+          repository: origoid/sdk-go
+          mode: push
+        config:
+          module:
+            path: github.com/origoid/sdk-go
