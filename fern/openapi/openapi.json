@@ -175,7 +175,37 @@
             }
           }
         },
-        "operationId": "issueToken"
+        "operationId": "issueToken",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/auth/token \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"expireAfter\": 1800}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/auth/token\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"expireAfter\": 1800\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/auth/token\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"expireAfter\": 1800\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"expireAfter\\\": 1800}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/auth/token\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"expireAfter\": 1800}';\n\n$ch = curl_init('https://api.origoid.com/auth/token');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"expireAfter\": 1800}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/auth/token\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"expireAfter\\\": 1800}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/auth/token\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/renapo/v1/curp-validations": {
@@ -575,7 +605,37 @@
             }
           }
         },
-        "operationId": "validateCurp"
+        "operationId": "validateCurp",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/renapo/v1/curp-validations \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"curp\": \"TEST900101HDFRRN09\", \"generateRfc\": true}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/renapo/v1/curp-validations\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"curp\": \"TEST900101HDFRRN09\",\n    \"generateRfc\": true\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/renapo/v1/curp-validations\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"curp\": \"TEST900101HDFRRN09\",\n        \"generateRfc\": true\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"curp\\\": \\\"TEST900101HDFRRN09\\\", \\\"generateRfc\\\": true}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/renapo/v1/curp-validations\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"curp\": \"TEST900101HDFRRN09\", \"generateRfc\": true}';\n\n$ch = curl_init('https://api.origoid.com/mex/renapo/v1/curp-validations');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"curp\": \"TEST900101HDFRRN09\", \"generateRfc\": true}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/renapo/v1/curp-validations\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"curp\\\": \\\"TEST900101HDFRRN09\\\", \\\"generateRfc\\\": true}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/renapo/v1/curp-validations\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/renapo/v1/curp-lookups": {
@@ -1018,7 +1078,37 @@
             }
           }
         },
-        "operationId": "lookupCurp"
+        "operationId": "lookupCurp",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/renapo/v1/curp-lookups \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"givenNames\": \"JUAN\", \"firstSurname\": \"PEREZ\", \"secondSurname\": \"LOPEZ\", \"dateOfBirth\": \"1990-01-01\", \"gender\": \"H\", \"birthStateCode\": \"DF\", \"generateRfc\": true}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/renapo/v1/curp-lookups\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"givenNames\": \"JUAN\",\n    \"firstSurname\": \"PEREZ\",\n    \"secondSurname\": \"LOPEZ\",\n    \"dateOfBirth\": \"1990-01-01\",\n    \"gender\": \"H\",\n    \"birthStateCode\": \"DF\",\n    \"generateRfc\": true\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/renapo/v1/curp-lookups\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"givenNames\": \"JUAN\",\n        \"firstSurname\": \"PEREZ\",\n        \"secondSurname\": \"LOPEZ\",\n        \"dateOfBirth\": \"1990-01-01\",\n        \"gender\": \"H\",\n        \"birthStateCode\": \"DF\",\n        \"generateRfc\": true\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"givenNames\\\": \\\"JUAN\\\", \\\"firstSurname\\\": \\\"PEREZ\\\", \\\"secondSurname\\\": \\\"LOPEZ\\\", \\\"dateOfBirth\\\": \\\"1990-01-01\\\", \\\"gender\\\": \\\"H\\\", \\\"birthStateCode\\\": \\\"DF\\\", \\\"generateRfc\\\": true}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/renapo/v1/curp-lookups\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"givenNames\": \"JUAN\", \"firstSurname\": \"PEREZ\", \"secondSurname\": \"LOPEZ\", \"dateOfBirth\": \"1990-01-01\", \"gender\": \"H\", \"birthStateCode\": \"DF\", \"generateRfc\": true}';\n\n$ch = curl_init('https://api.origoid.com/mex/renapo/v1/curp-lookups');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"givenNames\": \"JUAN\", \"firstSurname\": \"PEREZ\", \"secondSurname\": \"LOPEZ\", \"dateOfBirth\": \"1990-01-01\", \"gender\": \"H\", \"birthStateCode\": \"DF\", \"generateRfc\": true}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/renapo/v1/curp-lookups\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"givenNames\\\": \\\"JUAN\\\", \\\"firstSurname\\\": \\\"PEREZ\\\", \\\"secondSurname\\\": \\\"LOPEZ\\\", \\\"dateOfBirth\\\": \\\"1990-01-01\\\", \\\"gender\\\": \\\"H\\\", \\\"birthStateCode\\\": \\\"DF\\\", \\\"generateRfc\\\": true}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/renapo/v1/curp-lookups\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/imss/v1/nss-lookups": {
@@ -1245,7 +1335,37 @@
             }
           }
         },
-        "operationId": "lookupNss"
+        "operationId": "lookupNss",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/imss/v1/nss-lookups \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"curp\": \"ALMR900805HDFRZA09\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/imss/v1/nss-lookups\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"curp\": \"ALMR900805HDFRZA09\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/imss/v1/nss-lookups\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"curp\": \"ALMR900805HDFRZA09\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"curp\\\": \\\"ALMR900805HDFRZA09\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/imss/v1/nss-lookups\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"curp\": \"ALMR900805HDFRZA09\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/imss/v1/nss-lookups');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"curp\": \"ALMR900805HDFRZA09\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/imss/v1/nss-lookups\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"curp\\\": \\\"ALMR900805HDFRZA09\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/imss/v1/nss-lookups\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/imss/v1/employment-status": {
@@ -1515,7 +1635,37 @@
             }
           }
         },
-        "operationId": "getEmploymentStatus"
+        "operationId": "getEmploymentStatus",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/imss/v1/employment-status \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"curp\": \"GARM900101HDFRZA01\", \"nss\": \"92038109713\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/imss/v1/employment-status\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"curp\": \"GARM900101HDFRZA01\",\n    \"nss\": \"92038109713\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/imss/v1/employment-status\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"curp\": \"GARM900101HDFRZA01\",\n        \"nss\": \"92038109713\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"curp\\\": \\\"GARM900101HDFRZA01\\\", \\\"nss\\\": \\\"92038109713\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/imss/v1/employment-status\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"curp\": \"GARM900101HDFRZA01\", \"nss\": \"92038109713\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/imss/v1/employment-status');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"curp\": \"GARM900101HDFRZA01\", \"nss\": \"92038109713\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/imss/v1/employment-status\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"curp\\\": \\\"GARM900101HDFRZA01\\\", \\\"nss\\\": \\\"92038109713\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/imss/v1/employment-status\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/id/v1/voter-list-validations": {
@@ -1961,7 +2111,37 @@
             }
           }
         },
-        "operationId": "validateVoterList"
+        "operationId": "validateVoterList",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/id/v1/voter-list-validations \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"cic\": \"123456789\", \"citizenIdentifier\": \"987654321\", \"ocr\": \"0123456789012\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/id/v1/voter-list-validations\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"cic\": \"123456789\",\n    \"citizenIdentifier\": \"987654321\",\n    \"ocr\": \"0123456789012\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/id/v1/voter-list-validations\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"cic\": \"123456789\",\n        \"citizenIdentifier\": \"987654321\",\n        \"ocr\": \"0123456789012\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"cic\\\": \\\"123456789\\\", \\\"citizenIdentifier\\\": \\\"987654321\\\", \\\"ocr\\\": \\\"0123456789012\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/id/v1/voter-list-validations\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"cic\": \"123456789\", \"citizenIdentifier\": \"987654321\", \"ocr\": \"0123456789012\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/id/v1/voter-list-validations');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"cic\": \"123456789\", \"citizenIdentifier\": \"987654321\", \"ocr\": \"0123456789012\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/id/v1/voter-list-validations\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"cic\\\": \\\"123456789\\\", \\\"citizenIdentifier\\\": \\\"987654321\\\", \\\"ocr\\\": \\\"0123456789012\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/id/v1/voter-list-validations\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/id/v1/voter-id-extractions": {
@@ -2356,7 +2536,37 @@
             }
           }
         },
-        "operationId": "extractVoterIdData"
+        "operationId": "extractVoterIdData",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/id/v1/voter-id-extractions \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"front\": \"string\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/id/v1/voter-id-extractions\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"front\": \"string\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/id/v1/voter-id-extractions\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"front\": \"string\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"front\\\": \\\"string\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/id/v1/voter-id-extractions\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"front\": \"string\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/id/v1/voter-id-extractions');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"front\": \"string\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/id/v1/voter-id-extractions\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"front\\\": \\\"string\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/id/v1/voter-id-extractions\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/id/v1/qr-extractions": {
@@ -2633,7 +2843,37 @@
             }
           }
         },
-        "operationId": "extractQrData"
+        "operationId": "extractQrData",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/id/v1/qr-extractions \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"back\": \"string\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/id/v1/qr-extractions\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"back\": \"string\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/id/v1/qr-extractions\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"back\": \"string\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"back\\\": \\\"string\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/id/v1/qr-extractions\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"back\": \"string\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/id/v1/qr-extractions');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"back\": \"string\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/id/v1/qr-extractions\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"back\\\": \\\"string\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/id/v1/qr-extractions\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/global/biometrics/v1/face-matches": {
@@ -2924,7 +3164,37 @@
             }
           }
         },
-        "operationId": "matchFaces"
+        "operationId": "matchFaces",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/global/biometrics/v1/face-matches \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"face\": \"string\", \"front\": \"string\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/global/biometrics/v1/face-matches\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"face\": \"string\",\n    \"front\": \"string\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/global/biometrics/v1/face-matches\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"face\": \"string\",\n        \"front\": \"string\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"face\\\": \\\"string\\\", \\\"front\\\": \\\"string\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/global/biometrics/v1/face-matches\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"face\": \"string\", \"front\": \"string\"}';\n\n$ch = curl_init('https://api.origoid.com/global/biometrics/v1/face-matches');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"face\": \"string\", \"front\": \"string\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/global/biometrics/v1/face-matches\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"face\\\": \\\"string\\\", \\\"front\\\": \\\"string\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/global/biometrics/v1/face-matches\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/global/biometrics/v1/liveness-checks": {
@@ -3199,7 +3469,37 @@
             }
           }
         },
-        "operationId": "checkLiveness"
+        "operationId": "checkLiveness",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/global/biometrics/v1/liveness-checks \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"selfie\": \"string\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/global/biometrics/v1/liveness-checks\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"selfie\": \"string\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/global/biometrics/v1/liveness-checks\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"selfie\": \"string\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"selfie\\\": \\\"string\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/global/biometrics/v1/liveness-checks\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"selfie\": \"string\"}';\n\n$ch = curl_init('https://api.origoid.com/global/biometrics/v1/liveness-checks');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"selfie\": \"string\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/global/biometrics/v1/liveness-checks\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"selfie\\\": \\\"string\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/global/biometrics/v1/liveness-checks\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/compliance/v1/sat-69-searches": {
@@ -3371,7 +3671,7 @@
                     }
                   },
                   "Validation error": {
-                    "summary": "Validation Error (Missing Parameters)",
+                    "summary": "Validation error",
                     "value": {
                       "status": "ERROR",
                       "type": "INVALID_REQUEST",
@@ -3382,6 +3682,26 @@
                           "field": "body",
                           "code": "MISSING_SEARCH_CRITERIA",
                           "message": "You must provide either a valid identifier (rfc) or a name/razonSocial."
+                        },
+                        {
+                          "field": "rfc",
+                          "code": "INVALID_RFC_FORMAT",
+                          "message": "The provided value does not match a valid RFC pattern"
+                        },
+                        {
+                          "field": "name",
+                          "code": "NAME_TOO_SHORT",
+                          "message": "Name too short after removing corporate suffixes (need at least 3 chars)"
+                        },
+                        {
+                          "field": "name",
+                          "code": "NAME_ONLY_STOPWORDS",
+                          "message": "Name contains only corporate stopwords (SA, DE, CV, etc.); add an identifying token"
+                        },
+                        {
+                          "field": "body",
+                          "code": "PAYLOAD_TOO_LARGE",
+                          "message": "body exceeds the maximum allowed size"
                         }
                       ],
                       "transactionId": "d6c4cb45-d21e-4070-a998-029968c425b8",
@@ -3390,7 +3710,7 @@
                     }
                   },
                   "Internal error": {
-                    "summary": "Internal Error",
+                    "summary": "Internal error",
                     "value": {
                       "status": "ERROR",
                       "type": "INTERNAL_ERROR",
@@ -3402,7 +3722,7 @@
                     }
                   },
                   "Service unavailable": {
-                    "summary": "Service Unavailable",
+                    "summary": "Service unavailable",
                     "value": {
                       "status": "ERROR",
                       "type": "SERVICE_UNAVAILABLE",
@@ -3495,7 +3815,37 @@
             }
           }
         },
-        "operationId": "searchSat69"
+        "operationId": "searchSat69",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/compliance/v1/sat-69-searches \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"name\": \"JUAN PEREZ LOPEZ\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/compliance/v1/sat-69-searches\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"name\": \"JUAN PEREZ LOPEZ\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/compliance/v1/sat-69-searches\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"name\": \"JUAN PEREZ LOPEZ\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"name\\\": \\\"JUAN PEREZ LOPEZ\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/compliance/v1/sat-69-searches\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"name\": \"JUAN PEREZ LOPEZ\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/compliance/v1/sat-69-searches');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"name\": \"JUAN PEREZ LOPEZ\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/compliance/v1/sat-69-searches\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"name\\\": \\\"JUAN PEREZ LOPEZ\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/compliance/v1/sat-69-searches\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/compliance/v1/sat-69b-searches": {
@@ -3791,7 +4141,37 @@
             }
           }
         },
-        "operationId": "searchSat69b"
+        "operationId": "searchSat69b",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/compliance/v1/sat-69b-searches \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"name\": \"JUAN PEREZ LOPEZ\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/compliance/v1/sat-69b-searches\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"name\": \"JUAN PEREZ LOPEZ\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/compliance/v1/sat-69b-searches\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"name\": \"JUAN PEREZ LOPEZ\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"name\\\": \\\"JUAN PEREZ LOPEZ\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/compliance/v1/sat-69b-searches\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"name\": \"JUAN PEREZ LOPEZ\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/compliance/v1/sat-69b-searches');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"name\": \"JUAN PEREZ LOPEZ\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/compliance/v1/sat-69b-searches\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"name\\\": \\\"JUAN PEREZ LOPEZ\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/compliance/v1/sat-69b-searches\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/global/compliance/v1/ofac-searches": {
@@ -4010,7 +4390,37 @@
             }
           }
         },
-        "operationId": "searchOfac"
+        "operationId": "searchOfac",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/global/compliance/v1/ofac-searches \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"name\": \"JOAQUIN GUZMAN LOERA\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/global/compliance/v1/ofac-searches\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"name\": \"JOAQUIN GUZMAN LOERA\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/global/compliance/v1/ofac-searches\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"name\": \"JOAQUIN GUZMAN LOERA\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"name\\\": \\\"JOAQUIN GUZMAN LOERA\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/global/compliance/v1/ofac-searches\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"name\": \"JOAQUIN GUZMAN LOERA\"}';\n\n$ch = curl_init('https://api.origoid.com/global/compliance/v1/ofac-searches');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"name\": \"JOAQUIN GUZMAN LOERA\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/global/compliance/v1/ofac-searches\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"name\\\": \\\"JOAQUIN GUZMAN LOERA\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/global/compliance/v1/ofac-searches\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/compliance/v1/peps-searches": {
@@ -4299,7 +4709,37 @@
             }
           }
         },
-        "operationId": "searchPeps"
+        "operationId": "searchPeps",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/compliance/v1/peps-searches \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"givenNames\": \"JUAN\", \"firstSurname\": \"PEREZ\", \"secondSurname\": \"LOPEZ\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/compliance/v1/peps-searches\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"givenNames\": \"JUAN\",\n    \"firstSurname\": \"PEREZ\",\n    \"secondSurname\": \"LOPEZ\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/compliance/v1/peps-searches\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"givenNames\": \"JUAN\",\n        \"firstSurname\": \"PEREZ\",\n        \"secondSurname\": \"LOPEZ\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"givenNames\\\": \\\"JUAN\\\", \\\"firstSurname\\\": \\\"PEREZ\\\", \\\"secondSurname\\\": \\\"LOPEZ\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/compliance/v1/peps-searches\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"givenNames\": \"JUAN\", \"firstSurname\": \"PEREZ\", \"secondSurname\": \"LOPEZ\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/compliance/v1/peps-searches');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"givenNames\": \"JUAN\", \"firstSurname\": \"PEREZ\", \"secondSurname\": \"LOPEZ\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/compliance/v1/peps-searches\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"givenNames\\\": \\\"JUAN\\\", \\\"firstSurname\\\": \\\"PEREZ\\\", \\\"secondSurname\\\": \\\"LOPEZ\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/compliance/v1/peps-searches\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/global/email/v1/email-validations": {
@@ -4558,7 +4998,37 @@
             }
           }
         },
-        "operationId": "validateEmail"
+        "operationId": "validateEmail",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/global/email/v1/email-validations \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"email\": \"user@example.com\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/global/email/v1/email-validations\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"email\": \"user@example.com\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/global/email/v1/email-validations\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"email\": \"user@example.com\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"email\\\": \\\"user@example.com\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/global/email/v1/email-validations\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"email\": \"user@example.com\"}';\n\n$ch = curl_init('https://api.origoid.com/global/email/v1/email-validations');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"email\": \"user@example.com\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/global/email/v1/email-validations\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"email\\\": \\\"user@example.com\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/global/email/v1/email-validations\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/documents/v1/proof-of-address-extractions": {
@@ -4988,7 +5458,37 @@
             }
           }
         },
-        "operationId": "extractProofOfAddress"
+        "operationId": "extractProofOfAddress",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/documents/v1/proof-of-address-extractions \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"file\": \"string\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/documents/v1/proof-of-address-extractions\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"file\": \"string\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/documents/v1/proof-of-address-extractions\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"file\": \"string\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"file\\\": \\\"string\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/documents/v1/proof-of-address-extractions\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"file\": \"string\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/documents/v1/proof-of-address-extractions');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"file\": \"string\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/documents/v1/proof-of-address-extractions\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"file\\\": \\\"string\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/documents/v1/proof-of-address-extractions\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/sat/v1/rfc-validations": {
@@ -5211,7 +5711,37 @@
             }
           }
         },
-        "operationId": "validateRfc"
+        "operationId": "validateRfc",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/sat/v1/rfc-validations \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"rfc\": \"GARM900101HDF\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/sat/v1/rfc-validations\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"rfc\": \"GARM900101HDF\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/sat/v1/rfc-validations\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"rfc\": \"GARM900101HDF\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"rfc\\\": \\\"GARM900101HDF\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/sat/v1/rfc-validations\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"rfc\": \"GARM900101HDF\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/sat/v1/rfc-validations');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"rfc\": \"GARM900101HDF\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/sat/v1/rfc-validations\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"rfc\\\": \\\"GARM900101HDF\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/sat/v1/rfc-validations\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/sat/v1/csf-extractions": {
@@ -5539,7 +6069,37 @@
             }
           }
         },
-        "operationId": "extractCsf"
+        "operationId": "extractCsf",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/sat/v1/csf-extractions \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"rfc\": \"PELJ900101AAA\", \"cif\": \"12345678901\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/sat/v1/csf-extractions\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"rfc\": \"PELJ900101AAA\",\n    \"cif\": \"12345678901\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/sat/v1/csf-extractions\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"rfc\": \"PELJ900101AAA\",\n        \"cif\": \"12345678901\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"rfc\\\": \\\"PELJ900101AAA\\\", \\\"cif\\\": \\\"12345678901\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/sat/v1/csf-extractions\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"rfc\": \"PELJ900101AAA\", \"cif\": \"12345678901\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/sat/v1/csf-extractions');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"rfc\": \"PELJ900101AAA\", \"cif\": \"12345678901\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/sat/v1/csf-extractions\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"rfc\\\": \\\"PELJ900101AAA\\\", \\\"cif\\\": \\\"12345678901\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/sat/v1/csf-extractions\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     },
     "/mex/sat/v1/cfdi-validations": {
@@ -5815,7 +6375,37 @@
             }
           }
         },
-        "operationId": "validateCfdi"
+        "operationId": "validateCfdi",
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X POST https://api.origoid.com/mex/sat/v1/cfdi-validations \\\n  -H \"x-api-key: YOUR_API_KEY\" \\\n  -H \"content-type: application/json\" \\\n  -d '{\"uuid\": \"7C8BD4EA-AE86-4CB5-88B8-C6E61E988A8B\", \"rfcEmisor\": \"PEZJ811011KI1\", \"rfcReceptor\": \"EMP170623KI3\", \"total\": \"999999.99\"}'"
+          },
+          {
+            "lang": "JavaScript",
+            "source": "const response = await fetch(\"https://api.origoid.com/mex/sat/v1/cfdi-validations\", {\n  method: \"POST\",\n  headers: {\n    \"x-api-key\": process.env.ORIGOID_API_KEY,\n    \"content-type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    \"uuid\": \"7C8BD4EA-AE86-4CB5-88B8-C6E61E988A8B\",\n    \"rfcEmisor\": \"PEZJ811011KI1\",\n    \"rfcReceptor\": \"EMP170623KI3\",\n    \"total\": \"999999.99\"\n  }),\n});\n\nif (!response.ok) {\n  throw new Error(`HTTP ${response.status}`);\n}\n\nconst result = await response.json();\nconsole.log(result);"
+          },
+          {
+            "lang": "Python",
+            "source": "import os\nimport requests\n\nresponse = requests.post(\n    \"https://api.origoid.com/mex/sat/v1/cfdi-validations\",\n    headers={\n        \"x-api-key\": os.environ[\"ORIGOID_API_KEY\"],\n        \"content-type\": \"application/json\",\n    },\n    json={\n        \"uuid\": \"7C8BD4EA-AE86-4CB5-88B8-C6E61E988A8B\",\n        \"rfcEmisor\": \"PEZJ811011KI1\",\n        \"rfcReceptor\": \"EMP170623KI3\",\n        \"total\": \"999999.99\"\n    },\n    timeout=30,\n)\nresponse.raise_for_status()\nresult = response.json()\nprint(result)"
+          },
+          {
+            "lang": "Java",
+            "source": "import java.net.URI;\nimport java.net.http.HttpClient;\nimport java.net.http.HttpRequest;\nimport java.net.http.HttpResponse;\nimport java.time.Duration;\n\npublic class Example {\n    public static void main(String[] args) throws Exception {\n        String payload = \"{\\\"uuid\\\": \\\"7C8BD4EA-AE86-4CB5-88B8-C6E61E988A8B\\\", \\\"rfcEmisor\\\": \\\"PEZJ811011KI1\\\", \\\"rfcReceptor\\\": \\\"EMP170623KI3\\\", \\\"total\\\": \\\"999999.99\\\"}\";\n\n        HttpClient client = HttpClient.newBuilder()\n            .connectTimeout(Duration.ofSeconds(10))\n            .build();\n\n        HttpRequest request = HttpRequest.newBuilder()\n            .uri(URI.create(\"https://api.origoid.com/mex/sat/v1/cfdi-validations\"))\n            .header(\"x-api-key\", System.getenv(\"ORIGOID_API_KEY\"))\n            .header(\"content-type\", \"application/json\")\n            .timeout(Duration.ofSeconds(30))\n            .POST(HttpRequest.BodyPublishers.ofString(payload))\n            .build();\n\n        HttpResponse<String> response = client.send(\n            request, HttpResponse.BodyHandlers.ofString()\n        );\n\n        System.out.println(response.statusCode());\n        System.out.println(response.body());\n    }\n}"
+          },
+          {
+            "lang": "PHP",
+            "source": "<?php\n$payload = '{\"uuid\": \"7C8BD4EA-AE86-4CB5-88B8-C6E61E988A8B\", \"rfcEmisor\": \"PEZJ811011KI1\", \"rfcReceptor\": \"EMP170623KI3\", \"total\": \"999999.99\"}';\n\n$ch = curl_init('https://api.origoid.com/mex/sat/v1/cfdi-validations');\ncurl_setopt_array($ch, [\n    CURLOPT_POST => true,\n    CURLOPT_POSTFIELDS => $payload,\n    CURLOPT_RETURNTRANSFER => true,\n    CURLOPT_TIMEOUT => 30,\n    CURLOPT_HTTPHEADER => [\n        'x-api-key: ' . getenv('ORIGOID_API_KEY'),\n        'content-type: application/json',\n    ],\n]);\n\n$response = curl_exec($ch);\n$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);\ncurl_close($ch);\n\nif ($status >= 400) {\n    throw new Exception(\"HTTP $status\");\n}\n\n$result = json_decode($response, true);\nprint_r($result);"
+          },
+          {
+            "lang": "Go",
+            "source": "package main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"time\"\n)\n\nfunc main() {\n\tpayload := []byte(`{\"uuid\": \"7C8BD4EA-AE86-4CB5-88B8-C6E61E988A8B\", \"rfcEmisor\": \"PEZJ811011KI1\", \"rfcReceptor\": \"EMP170623KI3\", \"total\": \"999999.99\"}`)\n\treq, err := http.NewRequest(\"POST\", \"https://api.origoid.com/mex/sat/v1/cfdi-validations\", bytes.NewBuffer(payload))\n\tif err != nil { log.Fatal(err) }\n\treq.Header.Set(\"x-api-key\", os.Getenv(\"ORIGOID_API_KEY\"))\n\treq.Header.Set(\"content-type\", \"application/json\")\n\n\tclient := &http.Client{Timeout: 30 * time.Second}\n\tresp, err := client.Do(req)\n\tif err != nil { log.Fatal(err) }\n\tdefer resp.Body.Close()\n\n\tvar result map[string]any\n\tif err := json.NewDecoder(resp.Body).Decode(&result); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Println(result)\n}"
+          },
+          {
+            "lang": "C#",
+            "source": "using System;\nusing System.Net.Http;\nusing System.Text;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static async Task Main()\n    {\n        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };\n        client.DefaultRequestHeaders.Add(\"x-api-key\",\n            Environment.GetEnvironmentVariable(\"ORIGOID_API_KEY\"));\n\n        var payload = \"{\\\"uuid\\\": \\\"7C8BD4EA-AE86-4CB5-88B8-C6E61E988A8B\\\", \\\"rfcEmisor\\\": \\\"PEZJ811011KI1\\\", \\\"rfcReceptor\\\": \\\"EMP170623KI3\\\", \\\"total\\\": \\\"999999.99\\\"}\";\n        var content = new StringContent(payload, Encoding.UTF8, \"application/json\");\n\n        var response = await client.PostAsync(\"https://api.origoid.com/mex/sat/v1/cfdi-validations\", content);\n        response.EnsureSuccessStatusCode();\n\n        var body = await response.Content.ReadAsStringAsync();\n        Console.WriteLine(body);\n    }\n}"
+          }
+        ]
       }
     }
   },
