@@ -31,6 +31,20 @@ def main() -> int:
                 op.pop("x-codeSamples")
                 stripped += 1
 
+    # Extract the inline Envelope.status enum into a named EnvelopeStatus
+    # component. Fern otherwise derives a per-tag-package `EnvelopeStatus`
+    # from the inline enum and they collide across packages
+    # (socialSecurity/biometrics/banking/...). A named $ref is generated once.
+    schemas = spec.setdefault("components", {}).setdefault("schemas", {})
+    env_status = schemas.get("Envelope", {}).get("properties", {}).get("status")
+    extracted = False
+    if isinstance(env_status, dict) and "enum" in env_status and "$ref" not in env_status:
+        schemas["EnvelopeStatus"] = env_status
+        schemas["Envelope"]["properties"]["status"] = {
+            "$ref": "#/components/schemas/EnvelopeStatus"
+        }
+        extracted = True
+
     DST.parent.mkdir(parents=True, exist_ok=True)
     with DST.open("w") as f:
         json.dump(spec, f, indent=2, ensure_ascii=False)
@@ -38,6 +52,7 @@ def main() -> int:
 
     print(f"Synced {SRC} → {DST}")
     print(f"Stripped x-codeSamples from {stripped} operations.")
+    print(f"Extracted EnvelopeStatus component: {extracted}")
     return 0
 
 

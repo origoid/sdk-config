@@ -14,16 +14,25 @@ groups:
         output:
           location: local-file-system
           path: ../sdks/node
+        config:
+          inlineFileProperties: false
+          inlinePathParameters: false
+          enableInlineTypes: false
+          noSerdeLayer: false
+          omitUndefined: false
+          skipResponseValidation: false
+          useLegacyExports: true
       - name: fernapi/fern-go-sdk
-        version: 0.36.0
+        version: 1.44.5
         output:
           location: local-file-system
           path: ../sdks/go
         config:
           module:
             path: github.com/origoid/sdk-go
+          retryStatusCodes: legacy
       - name: fernapi/fern-python-sdk
-        version: 4.0.0
+        version: 4.64.1
         output:
           location: local-file-system
           path: ../sdks/python
@@ -40,22 +49,30 @@ groups:
     generators:
       - name: fernapi/fern-typescript-node-sdk
         version: 0.51.7
+        # github-push only — npm publish runs in origoid/sdk-node ci.yml on tag
+        # (NPM_TOKEN lives as a repo secret, NOT locally).
         output:
           location: npm
-          url: https://registry.npmjs.org
           package-name: "@origoid/sdk"
-          token: ${NPM_TOKEN}
         github:
           repository: origoid/sdk-node
           mode: push
+        config:
+          inlineFileProperties: false
+          inlinePathParameters: false
+          enableInlineTypes: false
+          noSerdeLayer: false
+          omitUndefined: false
+          skipResponseValidation: false
+          useLegacyExports: true
 
       - name: fernapi/fern-python-sdk
-        version: 4.0.0
+        version: 4.64.1
+        # github-push only — PyPI publish runs in origoid/sdk-python ci.yml on tag
+        # (PYPI_USERNAME/PYPI_PASSWORD live as repo secrets, NOT locally).
         output:
           location: pypi
-          url: https://upload.pypi.org/legacy/
           package-name: origoid
-          token: ${PYPI_TOKEN}
         github:
           repository: origoid/sdk-python
           mode: push
@@ -66,10 +83,11 @@ groups:
             version: v2
 
       - name: fernapi/fern-go-sdk
-        version: 0.36.0
+        version: 0.38.0
         github:
           repository: origoid/sdk-go
           mode: push
         config:
           module:
             path: github.com/origoid/sdk-go
+          retryStatusCodes: legacy
