@@ -265,6 +265,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -301,7 +302,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
-                          "rfc": "PELJ900101XXX",
+                          "rfc": "PELJ900101AB7",
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -330,7 +331,7 @@
                     }
                   },
                   "Deceased": {
-                    "summary": "Deceased (Baja Defunción)",
+                    "summary": "Deceased",
                     "value": {
                       "status": "OK",
                       "type": "CURP_DECEASED",
@@ -338,6 +339,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -366,7 +368,7 @@
                     }
                   },
                   "Homonymy": {
-                    "summary": "Homonymy (Alta Homonimia)",
+                    "summary": "Homonymy",
                     "value": {
                       "status": "OK",
                       "type": "CURP_HOMONYMY",
@@ -374,6 +376,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -402,7 +405,7 @@
                     }
                   },
                   "Apocryphal": {
-                    "summary": "Apocryphal (Baja Doc. Falso)",
+                    "summary": "Apocryphal",
                     "value": {
                       "status": "OK",
                       "type": "CURP_APOCRYPHAL",
@@ -410,6 +413,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -438,7 +442,7 @@
                     }
                   },
                   "Judicial": {
-                    "summary": "Judicial (Baja Judicial)",
+                    "summary": "Judicial",
                     "value": {
                       "status": "OK",
                       "type": "CURP_JUDICIAL_SUSPENSION",
@@ -446,6 +450,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -474,7 +479,7 @@
                     }
                   },
                   "Inactive": {
-                    "summary": "Inactive (Baja Sin Uso)",
+                    "summary": "Inactive",
                     "value": {
                       "status": "OK",
                       "type": "CURP_INACTIVE",
@@ -482,6 +487,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -734,6 +740,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -770,7 +777,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
-                          "rfc": "PELJ900101XXX",
+                          "rfc": "PELJ900101AB7",
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -799,7 +806,7 @@
                     }
                   },
                   "Deceased": {
-                    "summary": "Deceased (Baja Defunción)",
+                    "summary": "Deceased",
                     "value": {
                       "status": "OK",
                       "type": "CURP_DECEASED",
@@ -807,6 +814,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -835,7 +843,7 @@
                     }
                   },
                   "Homonymy": {
-                    "summary": "Homonymy (Alta Homonimia)",
+                    "summary": "Homonymy",
                     "value": {
                       "status": "OK",
                       "type": "CURP_HOMONYMY",
@@ -843,6 +851,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -871,7 +880,7 @@
                     }
                   },
                   "Apocryphal": {
-                    "summary": "Apocryphal (Baja Doc. Falso)",
+                    "summary": "Apocryphal",
                     "value": {
                       "status": "OK",
                       "type": "CURP_APOCRYPHAL",
@@ -879,6 +888,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -907,7 +917,7 @@
                     }
                   },
                   "Judicial": {
-                    "summary": "Judicial (Baja Judicial)",
+                    "summary": "Judicial",
                     "value": {
                       "status": "OK",
                       "type": "CURP_JUDICIAL_SUSPENSION",
@@ -915,6 +925,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -943,7 +954,7 @@
                     }
                   },
                   "Inactive": {
-                    "summary": "Inactive (Baja Sin Uso)",
+                    "summary": "Inactive",
                     "value": {
                       "status": "OK",
                       "type": "CURP_INACTIVE",
@@ -951,6 +962,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -1164,7 +1176,7 @@
           "RENAPO"
         ],
         "summary": "CURP Official Document (PDF)",
-        "description": "**Credits:** 2 per call.\n\nRetrieves the official RENAPO CURP document (\"Constancia de la CURP\") as a PDF, together with the full validated record and the CURP's RENAPO status — the **same status matrix as `curp-validations`** (active, homonymy, deceased, apocryphal, judicial suspension, inactive). Use it when you need the citizen's official, printable certificate, not just the validated data.\n\nThe PDF is returned **inline as base64** in `data.document.content`, alongside the parsed identity fields. This is a **synchronous** call.\n\nOptionally pass `generateRfc: true` to also receive the deterministic `personalInfo.rfc` (computed from the CURP, no SAT call) — identical to `curp-validations`.\n\n**Why it differs from `curp-validations`:** this endpoint retrieves the actual document from RENAPO, so a response takes a little longer to return. It is priced at **2 credits** and has a lower rate limit than the high-volume `curp-validations`.",
+        "description": "**Credits:** 2 per call.\n\nRetrieves the official RENAPO CURP document (\"Constancia de la CURP\") as a PDF, together with the full validated record and the CURP's RENAPO status — the **same status matrix as `curp-validations`** (active, homonymy, deceased, apocryphal, judicial suspension, inactive). Use it when you need the citizen's official, printable certificate, not just the validated data.\n\nThe PDF is returned **inline as base64** in `data.files[0].content`, alongside the parsed identity fields. This is a **synchronous** call.\n\nOptionally pass `generateRfc: true` to also receive the deterministic `personalInfo.rfc` (computed from the CURP, no SAT call) — identical to `curp-validations`.\n\n**Why it differs from `curp-validations`:** this endpoint retrieves the actual document from RENAPO, so a response takes a little longer to return. It is priced at **2 credits** and has a lower rate limit than the high-volume `curp-validations`.",
         "requestBody": {
           "required": true,
           "content": {
@@ -1220,7 +1232,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
-                          "rfc": "TEST900101XXX",
+                          "rfc": "TEST900101AB7",
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -1265,6 +1277,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -1309,6 +1322,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -1353,6 +1367,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -1397,6 +1412,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -1441,6 +1457,7 @@
                       "data": {
                         "personalInfo": {
                           "curp": "TEST900101HDFRRN09",
+                          "rfc": null,
                           "givenNames": "JUAN",
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
@@ -2652,7 +2669,7 @@
                           "citizenIdentifier": "079288742",
                           "barCode": "119195412",
                           "qr": "http://qr.ife.org.mx/121807928874203119195412/20140626/S/006176",
-                          "mrz": "IDMEX1191954121<<12180792887427902192M2412311MEX<03<<10110<1MIRANDAARAUJO<<RAQUEL27demarz"
+                          "mrz": "IDMEX1191954121<<12180792887427902192M2412311MEX<03<<10110<1MIRANDAARAUJO<<RAQUEL"
                         },
                         "mrzValidation": {
                           "dateOfBirth": true,
@@ -2754,8 +2771,8 @@
                         ]
                       },
                       "billable": true,
-                      "transactionId": "550e8400-e29b-41d4-a716-446655440000",
-                      "processedAt": "2026-03-15T19:23:00-06:00"
+                      "transactionId": "5f3e2a1b-8c7d-4e6f-9a0b-1c2d3e4f5a6b",
+                      "processedAt": "2026-03-15T19:24:12-06:00"
                     }
                   },
                   "Success G": {
@@ -2835,8 +2852,8 @@
                         ]
                       },
                       "billable": true,
-                      "transactionId": "550e8400-e29b-41d4-a716-446655440000",
-                      "processedAt": "2026-03-15T19:23:00-06:00"
+                      "transactionId": "7a1b2c3d-4e5f-4a6b-8c9d-0e1f2a3b4c5d",
+                      "processedAt": "2026-03-15T19:25:47-06:00"
                     }
                   },
                   "Unreadable": {
@@ -3048,9 +3065,9 @@
                         "personalInfo": {
                           "givenNames": "MARIA FERNANDA",
                           "firstSurname": "LOPEZ",
-                          "secondSurname": "GARCIA",
+                          "secondSurname": "GODINEZ",
                           "gender": "M",
-                          "curp": "LOGF950312MDFPRR08"
+                          "curp": "LOGF950312MDFRPL03"
                         },
                         "electoralGeography": {
                           "stateCode": "09",
@@ -3098,7 +3115,7 @@
                           "firstSurname": "PEREZ",
                           "secondSurname": "LOPEZ",
                           "gender": "H",
-                          "curp": "PELJ900101HDFRPN09"
+                          "curp": "PELJ900101HDFRZN02"
                         },
                         "electoralGeography": {
                           "stateCode": "09",
@@ -3114,8 +3131,8 @@
                           "emissionNumber": "1"
                         },
                         "security": {
-                          "cic": "123456789",
-                          "ocr": "1234567890123"
+                          "cic": "458201673",
+                          "ocr": "4582016739210"
                         },
                         "files": [
                           {
@@ -4978,7 +4995,7 @@
                         "matches": [
                           {
                             "listType": "OFAC_SDN",
-                            "entityName": "GARCIA HERNANDEZ, Jose",
+                            "entityName": "MEDINA HERNANDEZ, Jose",
                             "recordType": "INDIVIDUAL",
                             "similarityScore": 100,
                             "registeredAddress": "Sinaloa, Mexico",
@@ -5003,7 +5020,7 @@
                           },
                           {
                             "listType": "OFAC_SSI",
-                            "entityName": "GARCIA, Jose Manuel",
+                            "entityName": "MEDINA, Jose Manuel",
                             "recordType": "INDIVIDUAL",
                             "similarityScore": 96,
                             "registeredAddress": "Moscow, Russian Federation",
@@ -5026,13 +5043,13 @@
                           },
                           {
                             "listType": "OFAC_UN",
-                            "entityName": "JOSE GARCIA RAMIREZ",
+                            "entityName": "JOSE MEDINA RAMIREZ",
                             "recordType": "INDIVIDUAL",
                             "similarityScore": 93,
                             "registeredAddress": "Caracas, Venezuela",
                             "matchedOn": {
                               "type": "alias",
-                              "value": "JOSE A. GARCIA",
+                              "value": "JOSE A. MEDINA",
                               "identifiersMatched": [
                                 "name"
                               ]
@@ -5042,7 +5059,7 @@
                                 "UN-1267"
                               ],
                               "aliases": [
-                                "JOSE A. GARCIA"
+                                "JOSE A. MEDINA"
                               ],
                               "nationality": "VEN",
                               "dateOfBirth": "1968-03-02",
@@ -6222,7 +6239,7 @@
                         "documentType": "PROOF_OF_ADDRESS",
                         "provider": "TOTALPLAY",
                         "personalInfo": {
-                          "fullName": "GARCIA MARTINEZ JUAN",
+                          "fullName": "SORIANO MARTINEZ JUAN",
                           "phoneNumber": "5512345678"
                         },
                         "address": {
@@ -6655,7 +6672,7 @@
                   },
                   "cif": {
                     "type": "string",
-                    "description": "Official Tax Certificate Code (11 digits)."
+                    "description": "Official Tax Certificate Code (8 to 12 digits)."
                   }
                 },
                 "oneOf": [
@@ -6677,7 +6694,7 @@
                   "summary": "By RFC + CIF",
                   "value": {
                     "rfc": "PELJ900101AAA",
-                    "cif": "12345678901"
+                    "cif": "24010199999"
                   }
                 },
                 "by_document": {
@@ -6998,19 +7015,19 @@
                     "example": "7C8BD4EA-AE86-4CB5-88B8-C6E61E988A8B",
                     "description": "CFDI Folio Fiscal (UUID format 8-4-4-4-12). Required when sending direct identifiers."
                   },
-                  "rfcEmisor": {
+                  "rfcIssuer": {
                     "type": "string",
-                    "example": "PEZJ811011KI1",
+                    "example": "PEZJ900514H2A",
                     "description": "RFC of the issuer (12 or 13 chars). Required when sending direct identifiers."
                   },
-                  "rfcReceptor": {
+                  "rfcReceiver": {
                     "type": "string",
-                    "example": "EMP170623KI3",
+                    "example": "EMP210908DT4",
                     "description": "RFC of the receiver (12 or 13 chars). Required when sending direct identifiers."
                   },
                   "total": {
                     "type": "string",
-                    "example": "999999.99",
+                    "example": "18750.00",
                     "description": "Total CFDI amount as decimal string (no currency symbol). Required when sending direct identifiers."
                   },
                   "document": {
@@ -7022,8 +7039,8 @@
                   {
                     "required": [
                       "uuid",
-                      "rfcEmisor",
-                      "rfcReceptor",
+                      "rfcIssuer",
+                      "rfcReceiver",
                       "total"
                     ]
                   },
@@ -7052,18 +7069,18 @@
                       "data": {
                         "uuid": "7C8BD4EA-AE86-4CB5-88B8-C6E61E988A8B",
                         "issuer": {
-                          "rfc": "PEZJ811011KI1",
-                          "name": "JUAN ALONSO PEREZ ZAPATA"
+                          "rfc": "PEZJ900514H2A",
+                          "name": "JUAN PEREZ ZUNIGA"
                         },
                         "receiver": {
-                          "rfc": "EMP170623KI3",
+                          "rfc": "EMP210908DT4",
                           "name": "EMPRESA, S.A. DE C.V."
                         },
                         "issueDate": "2020-05-18T16:04:42-06:00",
                         "certificationDate": "2020-05-18T16:18:54-06:00",
                         "pacRfc": "SAT970701NN3",
                         "total": {
-                          "amount": "999999.99",
+                          "amount": "18750.00",
                           "currency": "MXN"
                         },
                         "effect": "INCOME",
@@ -7085,11 +7102,11 @@
                       "data": {
                         "uuid": "A1B2C3D4-E5F6-7890-ABCD-EF1234567890",
                         "issuer": {
-                          "rfc": "PEZJ811011KI1",
-                          "name": "JUAN ALONSO PEREZ ZAPATA"
+                          "rfc": "PEZJ900514H2A",
+                          "name": "JUAN PEREZ ZUNIGA"
                         },
                         "receiver": {
-                          "rfc": "EMP170623KI3",
+                          "rfc": "EMP210908DT4",
                           "name": "EMPRESA, S.A. DE C.V."
                         },
                         "issueDate": "2024-03-10T09:15:00-06:00",
@@ -7122,6 +7139,18 @@
                       "billable": true
                     }
                   },
+                  "Document not trusted": {
+                    "summary": "Document not trusted",
+                    "value": {
+                      "status": "OK",
+                      "type": "DOCUMENT_NOT_TRUSTED",
+                      "message": "Document QR points to an unofficial host",
+                      "data": null,
+                      "transactionId": "9a4c1e77-2b3d-4f8a-bc1e-6d5f0a2b3c4d",
+                      "processedAt": "2026-06-26T16:34:30-06:00",
+                      "billable": true
+                    }
+                  },
                   "Validation Error": {
                     "summary": "Validation Error",
                     "value": {
@@ -7133,12 +7162,12 @@
                         {
                           "field": "body",
                           "code": "MISSING_SEARCH_CRITERIA",
-                          "message": "must provide either 'document' or all of uuid, rfcEmisor, rfcReceptor and total"
+                          "message": "must provide either 'document' or all of uuid, rfcIssuer, rfcReceiver and total"
                         },
                         {
                           "field": "body",
                           "code": "MISSING_DEPENDENT_FIELD",
-                          "message": "direct-identifier mode requires uuid, rfcEmisor, rfcReceptor and total (missing: rfcEmisor, rfcReceptor, total)"
+                          "message": "direct-identifier mode requires uuid, rfcIssuer, rfcReceiver and total (missing: rfcIssuer, rfcReceiver, total)"
                         },
                         {
                           "field": "uuid",
@@ -7146,14 +7175,14 @@
                           "message": "uuid must be a UUID in 8-4-4-4-12 hex format"
                         },
                         {
-                          "field": "rfcEmisor",
+                          "field": "rfcIssuer",
                           "code": "INVALID_FORMAT",
-                          "message": "rfcEmisor must be 12 or 13 alphanumeric characters (SAT format)"
+                          "message": "rfcIssuer must be 12 or 13 alphanumeric characters (SAT format)"
                         },
                         {
-                          "field": "rfcReceptor",
+                          "field": "rfcReceiver",
                           "code": "INVALID_FORMAT",
-                          "message": "rfcReceptor must be 12 or 13 alphanumeric characters (SAT format)"
+                          "message": "rfcReceiver must be 12 or 13 alphanumeric characters (SAT format)"
                         },
                         {
                           "field": "total",
@@ -7427,7 +7456,7 @@
                           }
                         ]
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-cepsuccess001",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a00000000001",
                       "processedAt": "2026-06-01T14:23:06-06:00",
                       "billable": true
                     }
@@ -7492,7 +7521,7 @@
                           }
                         ]
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-cepsuccess002",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a00000000002",
                       "processedAt": "2026-06-01T14:23:06-06:00",
                       "billable": true
                     }
@@ -7544,7 +7573,7 @@
                         },
                         "files": []
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-cepsettled001",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a00000000003",
                       "processedAt": "2026-06-01T14:23:06-06:00",
                       "billable": true
                     }
@@ -7596,7 +7625,7 @@
                         },
                         "files": []
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-cepreturned01",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a00000000004",
                       "processedAt": "2026-06-01T14:23:06-06:00",
                       "billable": true
                     }
@@ -7648,7 +7677,7 @@
                         },
                         "files": []
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-cepcancel0001",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a00000000005",
                       "processedAt": "2026-06-01T14:23:06-06:00",
                       "billable": true
                     }
@@ -7700,7 +7729,7 @@
                         },
                         "files": []
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-ceppayfound01",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a00000000006",
                       "processedAt": "2026-06-01T14:23:06-06:00",
                       "billable": true
                     }
@@ -7711,7 +7740,7 @@
                       "type": "CEP_NOT_FOUND",
                       "message": "No CEP was found at Banxico matching the provided transfer details",
                       "data": null,
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-cepnotfound01",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a00000000007",
                       "processedAt": "2026-06-01T14:23:06-06:00",
                       "billable": true
                     }
@@ -7759,7 +7788,7 @@
                           "message": "body exceeds the maximum allowed size"
                         }
                       ],
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-cepinvalid001",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a00000000008",
                       "processedAt": "2026-06-01T14:23:06-06:00",
                       "billable": false
                     }
@@ -7770,7 +7799,7 @@
                       "type": "SERVICE_UNAVAILABLE",
                       "message": "Banxico's CEP service is temporarily unavailable. Please retry shortly.",
                       "data": null,
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-cepservice001",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a00000000009",
                       "processedAt": "2026-06-01T14:23:06-06:00",
                       "billable": false
                     }
@@ -7781,7 +7810,7 @@
                       "type": "INTERNAL_ERROR",
                       "message": "Unexpected internal error",
                       "data": null,
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-cepinternal01",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a0000000000a",
                       "processedAt": "2026-06-01T14:23:06-06:00",
                       "billable": false
                     }
@@ -8064,7 +8093,7 @@
                           }
                         ]
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-success00000",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a0000000000b",
                       "processedAt": "2026-06-02T10:00:00-06:00",
                       "billable": true
                     }
@@ -8169,7 +8198,7 @@
                           }
                         ]
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-inactive0000",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a0000000000c",
                       "processedAt": "2026-06-02T10:00:00-06:00",
                       "billable": true
                     }
@@ -8295,7 +8324,7 @@
                           }
                         ]
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-deceased000",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a0000000000d",
                       "processedAt": "2026-06-02T10:00:00-06:00",
                       "billable": true
                     }
@@ -8431,7 +8460,7 @@
                           }
                         ]
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-pensioner00",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a0000000000e",
                       "processedAt": "2026-06-02T10:00:00-06:00",
                       "billable": true
                     }
@@ -8555,7 +8584,7 @@
                           }
                         ]
                       },
-                      "transactionId": "c1d2e3f4-a5b6-7c8d-9e0f-scholar00000",
+                      "transactionId": "0a1b2c3d-4e5f-4a6b-8c9d-a0000000000f",
                       "processedAt": "2026-06-02T10:00:00-06:00",
                       "billable": true
                     }
