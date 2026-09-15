@@ -5,6 +5,41 @@ api:
 
 default-group: local
 
+# ---------------------------------------------------------------------------
+# Package metadata + README content (discoverability: GitHub, npm, PyPI,
+# pkg.go.dev). Lives here — NOT in the SDK repos — so every regeneration
+# rebuilds it. Editing README.md directly in sdk-* is overwritten by Fern.
+# ---------------------------------------------------------------------------
+metadata:
+  description: >-
+    Official OrigoID SDK: identity verification API for Mexico — CURP (RENAPO),
+    INE voter list, RFC (SAT), NSS (IMSS), OFAC/PEPs/SAT 69-B screening and face match.
+  authors:
+    - name: OrigoID
+      email: support@origoid.com
+
+readme:
+  apiName: OrigoID
+  apiReferenceLink: https://docs.origoid.com
+  defaultEndpoint: POST /mex/renapo/v1/curp-validations
+  introduction: |
+    Official SDK for OrigoID, a REST API for identity verification in Mexico.
+    Validate a CURP against RENAPO, check an INE voter credential against the
+    voter list (Lista Nominal), extract data from the INE card, validate RFC,
+    tax status certificates (CSF) and CFDI invoices at SAT, look up an NSS at
+    IMSS, screen against OFAC, PEPs and SAT 69 / 69-B lists, and compare faces.
+    Every response uses the same envelope, so integration is a switch on `type`.
+    Zero data retention: each request is validated, answered and discarded.
+
+    **En español** — SDK oficial de OrigoID para verificación de identidad en México:
+    validar CURP en RENAPO, vigencia de la credencial de elector en la Lista Nominal del
+    INE, OCR de INE, RFC, Constancia de Situación Fiscal y CFDI en el SAT, NSS en el IMSS,
+    búsqueda en OFAC, PEPs y listas SAT 69 y 69-B, y comparación facial. Cero retención
+    de datos. Guías: [Validar CURP](https://origoid.com/validar-curp.html) ·
+    [Validar INE / Lista Nominal](https://origoid.com/validar-ine.html) ·
+    [OCR de INE](https://origoid.com/ocr-ine.html) · [Validar RFC](https://origoid.com/validar-rfc.html) ·
+    [Comparación facial](https://origoid.com/comparacion-facial.html) ·
+    [Documentación](https://docs.origoid.com) · [Estatus](https://status.origoid.com)
 groups:
   # Local: generate to ../sdks/* for inspection. No publish.
   local:
@@ -22,6 +57,24 @@ groups:
           omitUndefined: false
           skipResponseValidation: false
           useLegacyExports: true
+          packageJson:
+            description: "Official OrigoID SDK: identity verification API for Mexico — CURP (RENAPO), INE voter list, RFC (SAT), NSS (IMSS), OFAC/PEPs screening and face match."
+            homepage: https://origoid.com
+            author:
+              name: OrigoID
+              email: support@origoid.com
+              url: https://origoid.com
+            bugs:
+              url: https://github.com/origoid/sdk-node/issues
+              email: support@origoid.com
+            keywords: [origoid, curp, renapo, ine, lista-nominal, rfc, sat, imss, nss, kyc, identity-verification, mexico, ofac, peps, face-match, validar-curp]
+      # Go NO se publica con Fern (el generador remoto excede el límite del plan y
+      # pisaría el README mantenido a mano). Receta real, solo este grupo:
+      #   fern generate --group local --generator fernapi/fern-go-sdk --version X.Y.Z --force
+      #   → parchar headers de versión en core/request_option.go (X-Fern-SDK-Version, User-Agent)
+      #     y .fern/metadata.json → rsync a un clon de origoid/sdk-go excluyendo
+      #     .git/.github/.fernignore/README.md → go build ./... && go vet ./... → commit, push
+      #     a la rama (unknown) y tag vX.Y.Z (pkg.go.dev lo indexa solo).
       - name: fernapi/fern-go-sdk
         version: 1.44.5
         output:
@@ -65,6 +118,17 @@ groups:
           omitUndefined: false
           skipResponseValidation: false
           useLegacyExports: true
+          packageJson:
+            description: "Official OrigoID SDK: identity verification API for Mexico — CURP (RENAPO), INE voter list, RFC (SAT), NSS (IMSS), OFAC/PEPs screening and face match."
+            homepage: https://origoid.com
+            author:
+              name: OrigoID
+              email: support@origoid.com
+              url: https://origoid.com
+            bugs:
+              url: https://github.com/origoid/sdk-node/issues
+              email: support@origoid.com
+            keywords: [origoid, curp, renapo, ine, lista-nominal, rfc, sat, imss, nss, kyc, identity-verification, mexico, ofac, peps, face-match, validar-curp]
 
       - name: fernapi/fern-python-sdk
         version: 4.64.1
@@ -73,6 +137,11 @@ groups:
         output:
           location: pypi
           package-name: origoid
+          metadata:
+            description: "Official OrigoID SDK: identity verification API for Mexico — CURP (RENAPO), INE voter list, RFC (SAT), NSS (IMSS), OFAC/PEPs screening and face match."
+            keywords: [origoid, curp, renapo, ine, lista-nominal, rfc, sat, imss, nss, kyc, identity-verification, mexico, ofac, peps, face-match, validar-curp]
+            documentation-link: https://docs.origoid.com
+            homepage-link: https://origoid.com
         github:
           repository: origoid/sdk-python
           mode: push
@@ -82,12 +151,3 @@ groups:
           pydantic_config:
             version: v2
 
-      - name: fernapi/fern-go-sdk
-        version: 0.38.0
-        github:
-          repository: origoid/sdk-go
-          mode: push
-        config:
-          module:
-            path: github.com/origoid/sdk-go
-          retryStatusCodes: legacy
