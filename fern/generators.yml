@@ -74,7 +74,7 @@ groups:
           skipResponseValidation: false
           useLegacyExports: true
           packageJson:
-            description: "Official OrigoID SDK: identity verification API for Mexico — CURP (RENAPO), INE voter list, RFC (SAT), NSS (IMSS), OFAC/PEPs screening and face match."
+            description: "Official OrigoID SDK: identity verification API for Mexico — CURP (RENAPO), INE voter list, RFC (SAT), IMSS employment, contribution weeks and NSS, OFAC/PEPs screening and face match."
             homepage: https://origoid.com
             author:
               name: OrigoID
@@ -135,7 +135,7 @@ groups:
           skipResponseValidation: false
           useLegacyExports: true
           packageJson:
-            description: "Official OrigoID SDK: identity verification API for Mexico — CURP (RENAPO), INE voter list, RFC (SAT), NSS (IMSS), OFAC/PEPs screening and face match."
+            description: "Official OrigoID SDK: identity verification API for Mexico — CURP (RENAPO), INE voter list, RFC (SAT), IMSS employment, contribution weeks and NSS, OFAC/PEPs screening and face match."
             homepage: https://origoid.com
             author:
               name: OrigoID
@@ -154,7 +154,7 @@ groups:
           location: pypi
           package-name: origoid
           metadata:
-            description: "Official OrigoID SDK: identity verification API for Mexico — CURP (RENAPO), INE voter list, RFC (SAT), NSS (IMSS), OFAC/PEPs screening and face match."
+            description: "Official OrigoID SDK: identity verification API for Mexico — CURP (RENAPO), INE voter list, RFC (SAT), IMSS employment, contribution weeks and NSS, OFAC/PEPs screening and face match."
             keywords: [origoid, curp, renapo, ine, lista-nominal, rfc, sat, imss, nss, kyc, identity-verification, mexico, ofac, peps, face-match, validar-curp]
             documentation-link: https://docs.origoid.com
             homepage-link: https://origoid.com
