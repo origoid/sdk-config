@@ -11649,14 +11649,6 @@
           }
         }
       },
-      "EnvelopeStatus": {
-        "type": "string",
-        "enum": [
-          "OK",
-          "ERROR"
-        ],
-        "description": "High-level outcome. `OK` means the request was successfully processed (regardless of business result). `ERROR` means the request was rejected or could not be processed."
-      },
       "ProfessionalLicenseSearchData": {
         "type": "object",
         "description": "Search result. Present only when `type` is `SUCCESS`.",
@@ -11844,6 +11836,14 @@
             }
           }
         }
+      },
+      "EnvelopeStatus": {
+        "type": "string",
+        "enum": [
+          "OK",
+          "ERROR"
+        ],
+        "description": "High-level outcome. `OK` means the request was successfully processed (regardless of business result). `ERROR` means the request was rejected or could not be processed."
       }
     }
   },
